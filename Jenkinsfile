@@ -9,7 +9,7 @@ pipeline{
         VENV ="env"
     }
 
-    stage {
+    stages {
         stage("Checkout code"){
             steps{
                 checkout scm
@@ -21,7 +21,7 @@ pipeline{
                 sh '''
                     python3 --version
                     python3-m venv $VENV
-                    .$VENV/bin/activate
+                    . $VENV/bin/activate
                     pip install --upgrade pip
                 '''
             }
@@ -30,7 +30,7 @@ pipeline{
         stage("Install Dependencies"){
             steps{
                 sh'''
-                    .$VENV/bin/activate
+                    . $VENV/bin/activate
                     pip install -r requirements.txt
                 '''
             }
@@ -39,7 +39,7 @@ pipeline{
         stage("Run Test"){
             steps{
                 sh'''
-                    .$VENV/bin/activate
+                    . $VENV/bin/activate
                     pytest
                 '''
             }
