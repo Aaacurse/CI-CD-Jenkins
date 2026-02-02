@@ -10,45 +10,51 @@ pipeline{
     }
 
     stages {
-        stage("Checkout code"){
+        stage("Echo hello world"){
             steps{
-                checkout scm
+                echo "Hello World"
             }
         }
 
-        stage("Setup Python"){
-            steps{
-                sh '''
-                    python3 --version
-                    python3-m venv $VENV
-                    . $VENV/bin/activate
-                    pip install --upgrade pip
-                '''
-            }
-        }
+        // stage("Checkout code"){
+        //     steps{
+        //         checkout scm
+        //     }
+        // }
 
-        stage("Install Dependencies"){
-            steps{
-                sh'''
-                    . $VENV/bin/activate
-                    pip install -r requirements.txt
-                '''
-            }
-        }
+        // stage("Setup Python"){
+        //     steps{
+        //         sh '''
+        //             python3 --version
+        //             python3-m venv $VENV
+        //             . $VENV/bin/activate
+        //             pip install --upgrade pip
+        //         '''
+        //     }
+        // }
 
-        stage("Run Test"){
-            steps{
-                sh'''
-                    . $VENV/bin/activate
-                    pytest
-                '''
-            }
-        }
+        // stage("Install Dependencies"){
+        //     steps{
+        //         sh'''
+        //             . $VENV/bin/activate
+        //             pip install -r requirements.txt
+        //         '''
+        //     }
+        // }
+
+        // stage("Run Test"){
+        //     steps{
+        //         sh'''
+        //             . $VENV/bin/activate
+        //             pytest
+        //         '''
+        //     }
+        // }
     }
 
     post{
         success{
-            echco 'Build Sucessful'
+            echo 'Build Sucessful'
         }
         failure{
             echo 'Build Failed'
