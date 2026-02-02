@@ -5,3 +5,7 @@ def add(num1,num2):
 def subtract(num1,num2):
     diff=num1-num2
     return diff
+
+def multiply(num1,num2):
+    prod=num1*num2
+    return prod
